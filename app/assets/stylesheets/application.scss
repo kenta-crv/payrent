@@ -316,7 +316,7 @@ main {
    background-repeat: no-repeat;
    vertical-align: middle;
    padding-bottom:50px;
-   margin-top:-22px;
+   margin-top:-25px;
 }
 @media (max-width: 768px) {
   .back-image-top{margin-top:0px;}
@@ -654,6 +654,10 @@ table.company {
   background: blue;
 }
 
+.label-orange {
+  background: orange;
+}
+
  /*hr*/
  .line {
      height:1px;
@@ -832,7 +836,7 @@ nav.globalMenuSp ul li a {
 }
 /* 質問をクリックした時のアイコンの動き */
 .cp_qa .cp_actab input:checked ~ label {
- color: #00838f;
+ color: #000;
  border-radius: 0.5em 0.5em 0 0;
 }
 /* 質問をクリックした時の+の動き */
@@ -968,6 +972,11 @@ footer {
 
 .pc-image {
   display: none; // PC向けの画像を初めに非表示にします
+  margin-top: -12px;
+}
+
+.brand-image {
+  margin-top: -40px;
 }
 
 @media only screen and (max-width: 599px) {
