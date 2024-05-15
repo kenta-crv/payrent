@@ -3,7 +3,7 @@
   br
   .tops-wrapper
     h2.headline
-      | お見積もり確認フォーム
+      | 確認画面
   .company-wrapper
     table.company.responsive-table
       colgroup
@@ -16,8 +16,8 @@
         td.arrow-box-cell
           | 会社名
         td.responsive-cell
-          = f.hidden_field :co
-          = @estimate.co
+          = f.hidden_field :company
+          = @estimate.company
       tr
         td.label-cell
           strong.label 必須
@@ -54,76 +54,10 @@
         td.label-cell
           strong.label 必須
         td.arrow-box-cell
-          | 設置先業種
+          | 毎月の支払家賃
         td.responsive-cell
-          = f.hidden_field :industry
-          = @estimate.industry
-      tr
-        td.label-cell
-          strong.label.label-blue 任意
-        td.arrow-box-cell
-          | 希望自販機
-        td.responsive-cell
-          = f.hidden_field :vender
-          = @estimate.vender
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | その他の自販機見積もりを希望しますか？
-          br
-          |
-        td.responsive-cell
-         = f.hidden_field :other
-         = @estimate.other
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 設置箇所
-        td.responsive-cell
-          = f.hidden_field :installation
-          = @estimate.installation
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 想定される利用人数
-        td.responsive-cell
-          = f.hidden_field :people
-          = @estimate.people
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 自販機について
-        td.responsive-cell
-          = f.hidden_field :chenge
-          = @estimate.chenge
-      tr
-        td.label-cell
-          strong.label.label-blue 任意
-        td.arrow-box-cell
-          | （交換・追加）設置中のメーカー
-        td.responsive-cell
-          = f.hidden_field :change_before
-          = @estimate.change_before
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 設置目的
-        td.responsive-cell
-          = f.hidden_field :aim
-          = @estimate.aim
-      tr
-        td.label-cell
-          strong.label 必須
-        td.arrow-box-cell
-          | 設置希望時期
-        td.responsive-cell
-          = f.hidden_field :period
-          = @estimate.period
+          = f.hidden_field :payment
+          = @estimate.payment
       tr
         td.label-cell
           strong.label.label-blue 任意
@@ -133,24 +67,6 @@
           = f.hidden_field :remarks
           = @estimate.remarks
       tr
-        td.label-cell
-          strong.label.label-orange 提案
-        td.arrow-box-cell
-          | 
-        td.responsive-cell
-          |【業界最大5年保証付き中古自販機】
-          br/
-          |各メーカーで売上見込みがないと判断される場合、自販機を設置できなくなります。この場合、弊社で5年保証の付いた中古の自動販売機の提供が可能となります。ご希望頂ける場合は☑︎をお願いします。
-      tr
-        td.label-cell
-          strong.label.label-orange 提案
-        td.arrow-box-cell
-          | 
-        td.responsive-cell
-          |レンタルサイクルスペースの提供
-          br/
-          |各メーカーで売上見込みがないと判断される場合、自販機を設置できなくなります。この場合、弊社で5年保証の付いた中古の自動販売機の提供が可能となります。ご希望頂ける場合は☑︎をお願いします。
-      tr
         td colspan="3"
          .center
-          = f.submit "送信", class: "btn btn-primary"
+          = f.submit "送信", class: "btn btn-success"

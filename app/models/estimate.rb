@@ -1,15 +1,4 @@
 class Estimate < ApplicationRecord
-  #belongs_to :client
-  has_one :comment, dependent: :destroy
-  has_one :transfer, dependent: :destroy
-  has_many :progresses, dependent: :destroy
-  has_many :payments, dependent: :destroy
-  validates :co, presence: { message: '会社名が入力されていません。' }, on: :create
-  validates :name, presence: { message: '名前が入力されていません。' }, on: :create
-  validates :tel, presence: { message: '電話番号が入力されていません。' }, on: :create
-  validates :email, presence: { message: 'メールアドレスが入力されていません。' }, on: :create
-  validates :address, presence: { message: '住所が入力されていません。' }, on: :create
-
   def self.import(file)
     save_cont = 0
     CSV.foreach(file.path, headers:true) do |row|

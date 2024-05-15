@@ -6,6 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+Dotenv::Railtie.load
 
 module Eatery
   class Application < Rails::Application
@@ -20,15 +21,15 @@ module Eatery
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    config.action_mailer.delivery_method = :smtp
-    config.action_mailer.smtp_settings = {
-    address: 'smtp3.gmoserver.jp',
-    domain: 'factoru.jp',
-    port: 587,
-    user_name: 'zihanki@factoru.jp',
-    password: 'yL4meV#333',
-    authentication: 'plain',
-    enable_starttls_auto: true
+    ActionMailer::Base.delivery_method = :smtp
+    ActionMailer::Base.smtp_settings = {
+      address: ENV['SMTP_ADDRESS'],
+      domain: ENV['SMTP_DOMAIN'],
+      port: ENV['SMTP_PORT'],
+      user_name: ENV['SMTP_USER_NAME'],
+      password: ENV['SMTP_PASSWORD'],
+      authentication: 'plain',
+      enable_starttls_auto: true
     }
   end
 

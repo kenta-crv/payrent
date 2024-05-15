@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-  #取引先アカウント
-  devise_for :clients, controllers: {
-    registrations: 'clients/registrations',
-    sessions: 'clients/sessions'
-  }
-  resources :clients, only: [:show] do
-    member do
-      post :disclose
-    end
-  end
-
   #管理者アカウント
   devise_for :admins, controllers: {
     registrations: 'admins/registrations',

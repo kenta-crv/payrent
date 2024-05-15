@@ -10,12 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_24_130139) do
-
-  create_table "add_column_to_comments", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2023_09_24_050126) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,25 +20,8 @@ ActiveRecord::Schema.define(version: 2023_12_24_130139) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "user_name"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
-
-  create_table "clients", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "company"
-    t.string "name"
-    t.string "tel"
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "disclosure_clicked_at"
-    t.index ["email"], name: "index_clients_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_clients_on_reset_password_token", unique: true
   end
 
   create_table "columns", force: :cascade do |t|
@@ -116,164 +94,23 @@ ActiveRecord::Schema.define(version: 2023_12_24_130139) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "estimate_id"
-    t.string "asahi"
-    t.string "cocacola"
-    t.string "dydo"
-    t.string "itoen"
-    t.string "kirin"
-    t.string "otsuka"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "suntory"
-    t.string "yamakyu"
-    t.string "neos"
+    t.string "status"
+    t.string "next"
     t.string "body"
-    t.string "net"
-    t.string "asahi_suggestion"
-    t.string "asahi_remarks"
-    t.string "cocacola_suggestion"
-    t.string "cocacola_remarks"
-    t.string "itoen_suggestion"
-    t.string "itoen_remarks"
-    t.string "neos_suggestion"
-    t.string "neos_remarks"
-    t.string "yamakyu_suggestion"
-    t.string "yamakyu_remarks"
-    t.string "dydo_suggestion"
-    t.string "dydo_remarks"
-    t.string "token"
-    t.integer "client_id"
-    t.string "asahi_file"
-    t.string "cocacola_file"
-    t.string "itoen_file"
-    t.string "neos_file"
-    t.string "yamakyu_file"
-    t.string "dydo_file"
-    t.date "inspection_start_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["estimate_id"], name: "index_comments_on_estimate_id"
-    t.index ["token"], name: "index_comments_on_token", unique: true
-  end
-
-  create_table "companies", force: :cascade do |t|
-    t.string "company"
-    t.string "name"
-    t.string "tel"
-    t.string "address"
-    t.string "mail"
-    t.string "remarks"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "image"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "client_id"
-    t.index ["client_id"], name: "index_companies_on_client_id"
-    t.index ["reset_password_token"], name: "index_companies_on_reset_password_token", unique: true
-  end
-
-  create_table "disclosure_logs", force: :cascade do |t|
-    t.integer "client_id"
-    t.integer "estimate_id"
-    t.string "action"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_disclosure_logs_on_client_id"
-    t.index ["estimate_id"], name: "index_disclosure_logs_on_estimate_id"
   end
 
   create_table "estimates", force: :cascade do |t|
-    t.string "co"
+    t.string "company"
     t.string "name"
     t.string "tel"
-    t.string "email"
     t.string "postnumber"
     t.string "address"
-    t.string "installation"
-    t.string "people"
-    t.string "chenge"
-    t.string "change_before"
-    t.string "importance"
-    t.string "period"
+    t.string "email"
+    t.string "payment"
     t.string "remarks"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.boolean "send_mail_flag"
-    t.string "vender"
-    t.string "other"
-    t.string "word"
-    t.string "percentage_i"
-    t.string "percentage_other"
-    t.string "assumed_number"
-    t.string "sales_price"
-    t.string "assumed_total"
-    t.string "aim"
-    t.string "attracting"
-    t.string "chagnge_remarks"
-    t.string "industry"
-    t.boolean "disclosed"
-    t.boolean "accepted_by_client"
-    t.integer "client_id"
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.integer "company_id"
-    t.string "title"
-    t.string "picture"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_images_on_company_id"
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.integer "room_id"
-    t.integer "estimate_id"
-    t.text "content"
-    t.boolean "is_user"
-    t.boolean "is_read", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "payments", force: :cascade do |t|
-    t.integer "estimate_id"
-    t.string "year"
-    t.string "month"
-    t.string "sales"
-    t.boolean "complete", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["estimate_id"], name: "index_payments_on_estimate_id"
-  end
-
-  create_table "progresses", force: :cascade do |t|
-    t.integer "estimate_id"
-    t.string "status"
-    t.string "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "admin_id"
-    t.string "document"
-    t.date "next"
-    t.index ["estimate_id"], name: "index_progresses_on_estimate_id"
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.string "whats"
-    t.string "category"
-    t.string "answer"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "rooms", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "member_id", null: false
-    t.text "uri_token", null: false
-    t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
