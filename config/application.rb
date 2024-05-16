@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-Dotenv::Railtie.load
+# Dotenv::Railtie.load この行を削除
 
 module Eatery
   class Application < Rails::Application
@@ -23,14 +23,13 @@ module Eatery
 
     ActionMailer::Base.delivery_method = :smtp
     ActionMailer::Base.smtp_settings = {
-      address: ENV['SMTP_ADDRESS'],
-      domain: ENV['SMTP_DOMAIN'],
-      port: ENV['SMTP_PORT'],
-      user_name: ENV['SMTP_USER_NAME'],
-      password: ENV['SMTP_PASSWORD'],
+      address: Rails.application.credentials.smtp[:address],
+      domain: Rails.application.credentials.smtp[:domain],
+      port: Rails.application.credentials.smtp[:port],
+      user_name: Rails.application.credentials.smtp[:user_name],
+      password: Rails.application.credentials.smtp[:password],
       authentication: 'plain',
       enable_starttls_auto: true
     }
   end
-
 end
